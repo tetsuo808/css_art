@@ -1,0 +1,256 @@
+/**********************************
+Description...: screen sass
+Author........: hello@satur9.co.uk
+Last Changed..: #{timestamp()} - v1.0
+Notes #1......:
+*********************************/
+
+@import "variables.scss";
+@import "mixins.scss";
+
+/******************
+Layout**/
+* {padding:0;margin:0;border:0;}
+
+body {
+font-family:helvetica,arial,sans-serif;
+font-size:100%;
+//line-height:1.5;
+cursor:default;
+background-color:#ddd;
+
+scroll-behavior:smooth;
+-webkit-font-smoothing:antialiased;
+-moz-osx-font-smoothing:grayscale;
+-webkit-text-size-adjust:100%;
+-ms-text-size-adjust:100%;
+}
+.container {
+position:relative;
+width:1280px;
+margin:0 auto;
+text-align:left;
+background-color:rgba(0,0,0,0.1);
+}
+
+svg {border:1px solid red;}
+	/*make svg <img>s fluid in IE */
+	img.svg, object.svg {width:100%;}
+
+
+.canvas {
+//overflow:hidden;
+position:relative;
+width:1080px;height:600px;
+//width:100%;height:100%;
+margin:0 auto;
+background-color:pink;
+
+	div {
+	position:absolute;
+
+		div {
+		position:relative;
+		width:100%;height:100%;
+
+			&:before, &:after {
+			position:absolute;
+			display:block;
+			content:"";
+			width:5px;height:5px;
+			background-color:red;
+			}
+			&:before {top:0;left:0;}
+			&:after {bottom:0;right:0;}
+		}
+	}
+
+	.a001 {
+	top:50px;left:50px;
+	width:200px;height:5px;
+	//background-color:brown;
+	background:conic-gradient(#f00,#0f0,#00f);
+	@include transform(translateX(-100px) translateY(10px) rotate(10deg) scale(2));
+	filter:hue-rotate(90deg);
+	}
+	.a002 {
+	top:50px;left:50px;
+	width:200px;height:5px;
+	background:linear-gradient(134deg, #d53369, #5c258d, #989133);
+	}
+	.a003 {
+	width:0;height:0;
+	border-style:solid;
+	border-width:0 50px 50px 50px;
+	border-color:transparent transparent #007bff transparent;
+	}
+	.a004 {
+	top:50px;right:50px;
+	width:20px;height:20px;
+	background-color:#333;
+	border-radius:20px 10px 50%;
+	}
+}
+
+/******************
+SVGs**/
+.icon-svg {
+overflow:hidden;
+width:1em;height:1em;
+vertical-align:-0.15em;
+fill:pink;
+stroke:coral;
+stroke-width:5%;
+stroke-linejoin:round;
+}
+.svg-icon-01 {
+fill:green;
+}
+
+.ic-2 {fill:#FDC646;}
+svg path {
+fill:inherit;
+//all: inherit;
+}
+
+.codrops-1 {
+  fill: #4BC0A5;
+  color: #A4DFD1;
+}
+.codrops-2 {
+  fill: #0099CC;
+  color: #7FCBE5;
+}
+.codrops-3 {
+  fill: #5F5EC0;
+  color: #AEAFDD;
+}
+
+
+
+/******************
+Global Styles**/
+.line, hr {
+clear:both;
+height:1px;
+font-size:0;
+margin:30px 0;
+border-bottom:1px solid $base-grey;
+}
+.clearing {clear:both;}
+.error {color:#f00;}
+.win {color:#090;}
+.hide {@include hide;}
+.remove {margin:0;padding:0;border:0;}
+.tiny {font-size:0.7em;}
+.no-function {pointer-events:none;}
+.webkit-blurry-fix {box-shadow:0 0 1px transparent;}
+.nice-scrolly-area {
+overflow-y:scroll;
+-webkit-overflow-scrolling:touch;
+}
+
+strong {font-weight:700;}
+em {font-style:italic;}
+q {
+font-style:italic;
+display:block;
+}
+address {font-style:normal;}
+acronym, abbr {
+cursor:help;
+border-bottom:1px dotted #000;
+}
+
+
+
+/******************
+Blockquotes**/
+blockquote {
+font-size:1.4em;
+quotes:"\201C""\201D""\2018""\2019";
+margin:20px 0;padding:20px 10px 0;
+background-color:#f9f9f9;
+border-left:10px solid #ccc;
+
+	&:before, &:after {
+	content:open-quote;
+	font-size:4em;
+	color:#696;
+	line-height:0.1em;
+	vertical-align:-0.4em;
+	}
+	&:before {margin-right:4px;}
+	&:after {
+	content:close-quote;
+	vertical-align:-0.6em;
+	margin-left:4px;
+	}
+	footer {
+	clear:left;
+	font-size:0.75em;
+	}
+	p, footer {display:inline;}
+}
+
+/******************
+Links + slectors**/
+a:link, a:visited {
+color:$base-red;
+text-decoration:underline;
+}
+a:hover {text-decoration:none;}
+a:active, a:focus {
+/*outline:none;*/
+color:#000;
+background-color:$focus-bg;
+text-decoration:underline;
+}
+
+//removes outline for mouse users, preserves it for keyboard.
+:focus:not(:focus-visible) {outline:none;}
+
+a[href$=".pdf"]:after {content:"(PDF document)";}
+
+::selection {background-color:$focus-bg;color:#000;}
+::-moz-selection {background-color:$focus-bg;color:#000;}
+
+//aria fallbacks for non-loading icons
+.no-svg .icon-only:after {
+content:attr(aria-label);
+}
+
+button {font-size:1.25em;}
+button:only-of-type {font-size:2em;} //bigger if in section of its own
+button:not(:only-of-type) {font-size:2em;} //bigger if more than one in section
+button:nth-last-child(6) {} // the 6th last element
+button:nth-last-child(6):first-child {} // the first of 6 elements. works only with 6 elements
+button:nth-last-child(6):first-child,
+button:nth-last-child(6):first-child ~ button {} // all elements from a specified set (6)
+button:nth-child(n+6) {} // all elements from 6th upwards
+
+/******************
+Crazy bg effts**/
+.svg-img {background-image:image('foo.svg#xywh=0,0,200,50');}
+.gradient-img {background-image:conic-gradient(#f00,#0f0,#00f);}
+
+/******************
+Clearfix**/
+.clearfix:after {
+visibility:hidden;
+display:block;
+clear:both;
+content:".";
+font-size:0;
+height:0;
+}
+* html .clearfix {zoom:1;}/*IE6*/
+*:first-child+html .clearfix {zoom:1;}/*IE7*/
+
+/******************
+Fallbacks**/
+@supports not (display:grid) {
+	body {
+	background-color: green;
+	}
+}

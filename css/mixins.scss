@@ -1,0 +1,218 @@
+@mixin hide {position:absolute;left:-9999px;}
+@mixin drop-shadow {text-shadow:1px 1px #000, 2px 2px #000, 3px 3px #000, 4px 4px #000, 5px 5px #000, 6px 6px #000;}
+@mixin text-shadow {text-shadow:1px 1px #000;}
+@mixin word-wrap {
+word-break:break-word;
+-webkit-hyphens:auto;
+-moz-hyphens:auto;
+hyphens:auto;
+}
+@mixin un-word-wrap {
+word-break:normal;
+-webkit-hyphens:none;
+-moz-hyphens:none;
+hyphens:none;
+}
+
+@mixin display-flex {
+display:-ms-flexbox;
+display:-webkit-flex;
+display:flex;
+}
+@mixin flex($flex-grow, $flex-shrink, $flex-basis) {
+-webkit-flex:$flex-grow $flex-shrink $flex-basis;
+-ms-flex:$flex-grow $flex-shrink $flex-basis;
+flex:$flex-grow $flex-shrink $flex-basis;
+}
+@mixin wrap-flex($flex-wrap) {
+-webkit-flex-wrap:$flex-wrap;
+flex-wrap:$flex-wrap;
+}
+@mixin direction-flex($flex-direction) {
+-webkit-flex-direction:$flex-direction;
+flex-direction:$flex-direction;
+}
+@mixin align-items($align-items) {
+-webkit-align-items:$align-items;
+align-items:$align-items;
+}
+@mixin align-self($align-self) {
+-webkit-align-self:$align-self;
+align-self:$align-self;
+}
+@mixin justify-content($justify-content) {
+-webkit-justify-content:$justify-content;
+justify-content:$justify-content;
+}
+
+
+@mixin transition($transition-property, $transition-time, $method) {
+-webkit-transition:$transition-property $transition-time $method;
+-moz-transition:$transition-property $transition-time $method;
+-ms-transition:$transition-property $transition-time $method;
+-o-transition:$transition-property $transition-time $method;
+transition:$transition-property $transition-time $method;
+}
+@mixin transform($transform-property...){
+-webkit-transform:$transform-property;
+-moz-transform:$transform-property;
+-ms-transform:$transform-property;
+-o-transform:$transform-property;
+transform:$transform-property;
+}
+@mixin animation ($animation, $duration, $delay) {
+-webkit-animation-name:$animation;
+-webkit-animation-duration:$duration;
+-webkit-animation-delay:$delay;
+-webkit-animation-fill-mode:forwards;
+
+-moz-animation:$animation ease-out 1;
+-moz-animation-duration:$duration;
+-moz-animation-fill-mode:forwards;
+
+animation-name:$animation;
+animation-duration:$duration;
+animation-delay:$delay;
+animation-fill-mode:forwards;
+}
+@mixin vert-gradient($fromColor, $toColor) {
+background-color:$toColor;
+background:-webkit-linear-gradient(top, $fromColor 0%, $toColor 100%);
+background:linear-gradient(to bottom, $fromColor 0%, $toColor 100%);
+}
+@mixin hori-gradient($fromColor, $toColor) {
+background-color:$toColor;
+background:-webkit-linear-gradient(left, $fromColor 0%, $toColor 100%);
+background:linear-gradient(to right, $fromColor 0%, $toColor 100%);
+}
+@mixin filter($filter-type,$filter-amount) {
+-webkit-filter: $filter-type+unquote('(#{$filter-amount})');
+-moz-filter: $filter-type+unquote('(#{$filter-amount})');
+-ms-filter: $filter-type+unquote('(#{$filter-amount})');
+-o-filter: $filter-type+unquote('(#{$filter-amount})');
+filter: $filter-type+unquote('(#{$filter-amount})');
+}
+@mixin opacity($opacity) {
+opacity:$opacity;
+$opacity-ie:$opacity * 100;
+filter:alpha(opacity=$opacity-ie);
+}
+@mixin border-box {
+-moz-box-sizing:border-box;
+-webkit-box-sizing:border-box;
+box-sizing:border-box;
+}
+
+@mixin vertical-align($position:absolute) {
+position:$position;
+top:50%;
+-webkit-transform:translateY(-50%);
+-ms-transform:translateY(-50%);
+transform:translateY(-50%);
+}
+@mixin hori-align {
+left:50%;
+-webkit-transform:translateX(-50%);
+-ms-transform:translateX(-50%);
+transform:translateX(-50%);
+}
+
+@mixin angle($pseudo, $flip: false, $angle: 1.5deg) {
+  // Possible values for $pseudo are: before, after, both
+  @if $pseudo == 'before' or $pseudo == 'after' or $pseudo == 'both' {
+    position: relative;
+    z-index: 1;
+    $selector: if($pseudo == 'both', '&:before,&:after', '&:#{$pseudo}');
+
+    #{$selector} {
+      background: inherit;
+      content: '';
+      display: block;
+      height: 50%;
+      left: 0;
+      position: absolute;
+      right: 0;
+      z-index: -1;
+      -webkit-backface-visibility: hidden; // for Chrome Windows
+    }
+
+    @if $pseudo == 'before' {
+      #{$selector} {
+        top: 0;
+
+        @if $flip {
+          transform: skewY($angle * -1);
+          transform-origin: 0 0;
+        } @else {
+          transform: skewY($angle);
+          transform-origin: 100% 0;
+        }
+      }
+    }
+
+    @if $pseudo == 'after' {
+      #{$selector} {
+        bottom: 0;
+
+        @if $flip {
+          transform: skewY($angle);
+          transform-origin: 0 100%;
+        } @else {
+          transform: skewY($angle * -1);
+          transform-origin: 100%;
+        }
+      }
+    }
+
+    @if $pseudo == 'both' {
+      &:before {
+        top: 0;
+
+        @if $flip {
+          transform: skewY($angle * -1);
+          transform-origin: 0 0;
+        } @else {
+          transform: skewY($angle);
+          transform-origin: 100% 0;
+        }
+      }
+
+      &:after {
+        bottom: 0;
+
+        @if $flip {
+          transform: skewY($angle);
+          transform-origin: 0 0;
+        } @else {
+          transform: skewY($angle * -1);
+          transform-origin: 100%;
+        }
+      }
+    }
+  }
+}
+
+// slanted edges here
+.edge--bottom {
+  @include angle(after);
+}
+
+.edge--bottom--reverse {
+  @include angle(after, true);
+}
+
+.edge--top {
+  @include angle(before);
+}
+
+.edge--top--reverse {
+  @include angle(before, true);
+}
+
+.edge--both {
+  @include angle(both);
+}
+
+.edge--both--reverse {
+  @include angle(both, true);
+}

@@ -1,0 +1,10 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+	<lewis> -- <developer/designer> -- <hello@satur9.co.uk>
+
+# TECHNOLOGY COLOPHON
+	Sass, Grunt
+	HTML5, CSS3

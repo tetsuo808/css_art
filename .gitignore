@@ -1,0 +1,5 @@
+.sass-cache
+node_modules
+*Thumbs.db
+*.db
+*.DS_Store
