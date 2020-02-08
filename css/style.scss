@@ -19,20 +19,23 @@ Notes #1......:
 Layout**/
 * {padding:0;margin:0;border:0;box-sizing:border-box;}
 
-body, html {height:100%;}
+body, html {
+overflow:hidden;
+height:100%;
+}
 body {
 font-family:helvetica,sans-serif;
 font-size:100%;
 cursor:default;
 scroll-behavior:smooth;
 
-padding:50px;
+padding:5%;
 background-color:#999;
 }
 
 
 .canvas {
-//overflow:hidden;
+overflow:hidden;
 position:relative;
 //width:1080px;height:600px;
 width:100%;height:100%;max-height:500px;
@@ -40,7 +43,7 @@ margin:0 auto;
 background-color:pink;
 background:conic-gradient(#f00,#0f0,#00f);
 background:linear-gradient(to right, rgba(200,40,0,1) 0%, rgba(56,200,0,1) 49%, rgba(0,0,200,1) 100%);
-background:linear-gradient(to bottom, rgba(200,40,0,1) 0%, rgba(56,200,0,1) 49%, rgba(0,0,200,1) 100%);
+background:linear-gradient(to bottom, rgba(200,40,0,0.5) 0%, rgba(56,200,0,1) 49%, rgba(0,0,200,.2) 100%);
 
 
 	div {
@@ -72,9 +75,15 @@ background:linear-gradient(to bottom, rgba(200,40,0,1) 0%, rgba(56,200,0,1) 49%,
 	filter:hue-rotate(90deg);
 	}
 	.a002 {
-	top:50px;left:50px;
-	width:200px;height:5px;
+	top:50px;left:550px;
+	width:200px;height:65px;
+	opacity:0.9;
+	border:2px solid rgba(255,25,0,0.1);
+	border-left-width:0;
+	border-bottom-width:0;
+	border-top-left-radius:30px;
 	background:linear-gradient(134deg, #d53369, #5c258d, #989133);
+	@include transform(skew(15deg, 15deg));
 	}
 	.a003 {
 	width:0;height:0;
@@ -82,12 +91,15 @@ background:linear-gradient(to bottom, rgba(200,40,0,1) 0%, rgba(56,200,0,1) 49%,
 	border-width:0 50px 50px 50px;
 	border-color:transparent transparent #007bff transparent;
 	}
+
 	.a004 {
 	top:50px;right:50px;
 	width:20px;height:20px;
 	background-color:#333;
 	border-radius:20px 10px 50%;
+	@include transform(rotateZ(-251deg));
 	}
+
 	.a005 {
 	display:block;
 	bottom:50px;right:50px;
@@ -97,43 +109,63 @@ background:linear-gradient(to bottom, rgba(200,40,0,1) 0%, rgba(56,200,0,1) 49%,
 		content:"🐷";
 		position:absolute;
 		top:0;left:calc(50% - 7px);
+		filter:blur(0.6px);
 		}
+	}
+
+	.a006 {
+	//bottom:50px;right:50%;
+	width:40%;height:90%;
+	clip-path: polygon(50% 2.4%, 34.5% 33.8%, 0% 38.8%, 25% 63.1%, 19.1% 97.6%, 50% 81.3%, 80.9% 97.6%, 75% 63.1%, 100% 38.8%, 65.5% 33.8%);
+	}
+
+	.a011, .a012, .a013, .a014, .a015,
+	.a016, .a017, .a018, .a019, .a020 {
+	bottom:0;right:0;
+	width:400px;height:1px;
+	}
+	.a011 {
+	@include transform(translateX(90px) translateY(-12px) rotate(-45deg) scale(1));
+	}
+	.a012 {
+	height:2px;
+	@include transform(translateX(90px) translateY(-22px) rotate(-46deg) scale(1));
+	}
+	.a013 {
+	height:3px;
+	@include transform(translateX(90px) translateY(-32px) rotate(-47deg) scale(1));
+	}
+	.a014 {
+	height:4px;
+	@include transform(translateX(90px) translateY(-42px) rotate(-48deg) scale(1));
+	}
+	.a015 {
+	height:5px;
+	@include transform(translateX(90px) translateY(-52px) rotate(-49deg) scale(1));
+	}
+	.a016 {
+	height:6px;
+	@include transform(translateX(90px) translateY(-62px) rotate(-48deg) scale(1));
+	}
+	.a017 {
+	height:7px;
+	@include transform(translateX(90px) translateY(-72px) rotate(-47deg) scale(1));
+	}
+	.a018 {
+	height:8px;
+	@include transform(translateX(90px) translateY(-82px) rotate(-46deg) scale(1));
+	}
+	.a019 {
+	height:7px;
+	@include transform(translateX(90px) translateY(-92px) rotate(-45deg) scale(1));
+	}
+	.a020 {
+	height:3px;
+	@include transform(translateX(90px) translateY(-102px) rotate(-45deg) scale(1));
 	}
 }
 
-/******************
-SVGs**/
-.icon-svg {
-overflow:hidden;
-width:1em;height:1em;
-vertical-align:-0.15em;
-fill:pink;
-stroke:coral;
-stroke-width:5%;
-stroke-linejoin:round;
-}
-.svg-icon-01 {
-fill:green;
-}
 
-.ic-2 {fill:#FDC646;}
-svg path {
-fill:inherit;
-//all: inherit;
-}
-
-.codrops-1 {
-  fill: #4BC0A5;
-  color: #A4DFD1;
-}
-.codrops-2 {
-  fill: #0099CC;
-  color: #7FCBE5;
-}
-.codrops-3 {
-  fill: #5F5EC0;
-  color: #AEAFDD;
-}
 
 
 
@@ -147,11 +179,8 @@ margin:30px 0;
 border-bottom:1px solid $base-grey;
 }
 .clearing {clear:both;}
-.error {color:#f00;}
-.win {color:#090;}
+
 .hide {@include hide;}
-.remove {margin:0;padding:0;border:0;}
-.tiny {font-size:0.7em;}
 .no-function {pointer-events:none;}
 .webkit-blurry-fix {box-shadow:0 0 1px transparent;}
 .nice-scrolly-area {
@@ -237,11 +266,6 @@ button:nth-last-child(6):first-child {} // the first of 6 elements. works only w
 button:nth-last-child(6):first-child,
 button:nth-last-child(6):first-child ~ button {} // all elements from a specified set (6)
 button:nth-child(n+6) {} // all elements from 6th upwards
-
-/******************
-Crazy bg effts**/
-.svg-img {background-image:image('foo.svg#xywh=0,0,200,50');}
-.gradient-img {background-image:conic-gradient(#f00,#0f0,#00f);}
 
 /******************
 Clearfix**/
