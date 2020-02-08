@@ -8,43 +8,40 @@ Notes #1......:
 @import "variables.scss";
 @import "mixins.scss";
 
+@keyframes AnimationName {
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+
 /******************
 Layout**/
-* {padding:0;margin:0;border:0;}
+* {padding:0;margin:0;border:0;box-sizing:border-box;}
 
+body, html {height:100%;}
 body {
-font-family:helvetica,arial,sans-serif;
+font-family:helvetica,sans-serif;
 font-size:100%;
-//line-height:1.5;
 cursor:default;
-background-color:#999;
-
 scroll-behavior:smooth;
--webkit-font-smoothing:antialiased;
--moz-osx-font-smoothing:grayscale;
--webkit-text-size-adjust:100%;
--ms-text-size-adjust:100%;
-}
-.container {
-position:relative;
-width:1280px;
-margin:0 auto;
-text-align:left;
-background-color:rgba(0,0,0,0.1);
-}
 
-svg {border:1px solid red;}
-	/*make svg <img>s fluid in IE */
-	img.svg, object.svg {width:100%;}
+padding:50px;
+background-color:#999;
+}
 
 
 .canvas {
 //overflow:hidden;
 position:relative;
-width:1080px;height:600px;
-//width:100%;height:100%;
+//width:1080px;height:600px;
+width:100%;height:100%;max-height:500px;
 margin:0 auto;
 background-color:pink;
+background:conic-gradient(#f00,#0f0,#00f);
+background:linear-gradient(to right, rgba(200,40,0,1) 0%, rgba(56,200,0,1) 49%, rgba(0,0,200,1) 100%);
+background:linear-gradient(to bottom, rgba(200,40,0,1) 0%, rgba(56,200,0,1) 49%, rgba(0,0,200,1) 100%);
+
 
 	div {
 	position:absolute;
@@ -52,6 +49,7 @@ background-color:pink;
 		div {
 		position:relative;
 		width:100%;height:100%;
+		background-color:rgba(0,0,0,0.1);
 
 			&:before, &:after {
 			position:absolute;
@@ -89,6 +87,17 @@ background-color:pink;
 	width:20px;height:20px;
 	background-color:#333;
 	border-radius:20px 10px 50%;
+	}
+	.a005 {
+	display:block;
+	bottom:50px;right:50px;
+	width:50px;height:50px;
+
+		&:after {
+		content:"🐷";
+		position:absolute;
+		top:0;left:calc(50% - 7px);
+		}
 	}
 }
 
