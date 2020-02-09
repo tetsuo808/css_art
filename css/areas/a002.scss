@@ -1,0 +1,11 @@
+.a002 {
+top:50px;left:550px;
+width:200px;height:65px;
+opacity:0.9;
+border:2px solid rgba(255,25,0,0.1);
+border-left-width:0;
+border-bottom-width:0;
+border-top-left-radius:30px;
+background:linear-gradient(134deg, #d53369, #5c258d, #989133);
+@include transform(skew(15deg, 15deg));
+}

@@ -1,0 +1,8 @@
+.a001 {
+top:50px;left:50px;
+width:200px;height:5px;
+//background-color:brown;
+background:conic-gradient(#f00,#0f0,#00f);
+@include transform(translateX(-100px) translateY(10px) rotate(10deg) scale(2));
+filter:hue-rotate(90deg);
+}
